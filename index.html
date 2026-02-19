@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>全角かな / 半角かな 変換</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="container">
+    <h1>全角かな / 半角かな 変換</h1>
+    <p class="note">入力するとリアルタイムで反対側へ変換します。</p>
+
+    <section class="grid">
+      <label class="panel">
+        <span>全角かな（主に全角カタカナ）</span>
+        <textarea id="fullInput" placeholder="例: ガッツポーズ、こんにちは"></textarea>
+      </label>
+
+      <label class="panel">
+        <span>半角かな</span>
+        <textarea id="halfInput" placeholder="例: ｶﾞｯﾂﾎﾟｰｽﾞ"></textarea>
+      </label>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
