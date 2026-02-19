@@ -1,5 +1,7 @@
 const fullInput = document.getElementById("fullInput");
 const halfInput = document.getElementById("halfInput");
+const fullCopyBtn = document.getElementById("fullCopyBtn");
+const halfCopyBtn = document.getElementById("halfCopyBtn");
 
 const fullToHalfMap = {
   "。": "｡",
@@ -114,7 +116,49 @@ function syncFromHalf() {
   fullInput.value = convertHalfToFull(halfInput.value);
 }
 
+function copyByFallback(text) {
+  const temp = document.createElement("textarea");
+  temp.value = text;
+  temp.setAttribute("readonly", "");
+  temp.style.position = "fixed";
+  temp.style.top = "-9999px";
+  document.body.appendChild(temp);
+  temp.select();
+  const copied = document.execCommand("copy");
+  document.body.removeChild(temp);
+  if (!copied) {
+    throw new Error("copy failed");
+  }
+}
+
+async function copyText(text) {
+  if (navigator.clipboard && window.isSecureContext) {
+    await navigator.clipboard.writeText(text);
+    return;
+  }
+  copyByFallback(text);
+}
+
+function attachCopy(button, source) {
+  button.addEventListener("click", async () => {
+    const baseLabel = "コピー";
+
+    try {
+      await copyText(source.value);
+      button.textContent = "コピー済み";
+    } catch {
+      button.textContent = "失敗";
+    }
+
+    setTimeout(() => {
+      button.textContent = baseLabel;
+    }, 900);
+  });
+}
+
 fullInput.addEventListener("input", syncFromFull);
 halfInput.addEventListener("input", syncFromHalf);
+attachCopy(fullCopyBtn, fullInput);
+attachCopy(halfCopyBtn, halfInput);
 
 syncFromFull();

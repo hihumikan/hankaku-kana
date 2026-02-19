@@ -12,15 +12,21 @@
     <p class="note">入力するとリアルタイムで反対側へ変換します。</p>
 
     <section class="grid">
-      <label class="panel">
-        <span>全角かな（主に全角カタカナ）</span>
+      <div class="panel">
+        <div class="panelHead">
+          <span>全角かな（主に全角カタカナ）</span>
+          <button id="fullCopyBtn" type="button" class="copyBtn">コピー</button>
+        </div>
         <textarea id="fullInput" placeholder="例: ガッツポーズ、こんにちは"></textarea>
-      </label>
+      </div>
 
-      <label class="panel">
-        <span>半角かな</span>
+      <div class="panel">
+        <div class="panelHead">
+          <span>半角かな</span>
+          <button id="halfCopyBtn" type="button" class="copyBtn">コピー</button>
+        </div>
         <textarea id="halfInput" placeholder="例: ｶﾞｯﾂﾎﾟｰｽﾞ"></textarea>
-      </label>
+      </div>
     </section>
   </main>
 
